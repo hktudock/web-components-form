@@ -1,0 +1,21 @@
+project:
+  name: nativeForm
+  src: .
+  app:
+    name: webserver
+    services:
+      node:
+        image: node:10
+        port: 8123
+        roles:
+          - src
+          - main
+          - app
+        logging:
+          stdout: true
+          stderr: true
+        command: 'npm start'
+        environment:
+          VS_ENV: dev
+          BIND_HOST: 0.0.0.0
+          NODE_ENV: development,riptide

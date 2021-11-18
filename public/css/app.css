@@ -1,0 +1,20 @@
+:root {
+    --x-form-border-width: 1px;
+    --x-form-border-style: solid;
+    --x-form-border-color: hsl(0 0% 86.7%);
+    --x-form-border-color--focus: hsl(0 0% 0%);
+    --x-form-background-color: hsl(0 0% 100%);
+    --x-form-padding: 0.5rem 0.75rem;
+    --x-form-background-color--disabled: hsla(0, 0%, 86.7%, 0.5);
+}
+
+body {
+    font-family: sans-serif;
+}
+
+fieldset.name {
+    border: none;
+    display: flex;
+    padding: 0;
+    gap: 1rem;
+}
