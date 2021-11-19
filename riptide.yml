@@ -1,11 +1,11 @@
 project:
-  name: nativeForm
+  name: nativeform
   src: .
   app:
     name: webserver
     services:
       node:
-        image: node:10
+        image: node:12
         port: 8123
         roles:
           - src
