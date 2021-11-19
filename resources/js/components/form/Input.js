@@ -66,4 +66,4 @@ ${INPUT_CSS}
 </label>
 `;
 
-customElements.define('x-input-text', InputText);
+customElements.define('x-input', InputText);

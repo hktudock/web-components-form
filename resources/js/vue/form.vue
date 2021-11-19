@@ -1,12 +1,12 @@
 <template>
-  <form action="#" ref="form">
+  <form action="#" ref="form" :novalidate="novalidate">
       <h1>Vue Gedöns</h1>
       <fieldset>
         <legend>Custom</legend>
         <x-select value="1" name="prefix" required :data-options="prefixes">Prefix</x-select>
         <fieldset class="name">
-          <x-input-text placeholder="First name" name="firstname" required minlength="2" pattern="a{2,}">First name</x-input-text>
-          <x-input-text :value="lastname" placeholder="Last name" name="lastname" required>Last name</x-input-text>
+          <x-input placeholder="First name" name="firstname" required minlength="2" pattern="a{2,}">First name</x-input>
+          <x-input :value="lastname" placeholder="Last name" name="lastname" required>Last name</x-input>
         </fieldset>
         <x-zip name="zip" data-country="DE" required>Zip</x-zip>
         <x-select name="country" data-options='[{"value": "de_DE", "label": "Germany"}]'>Country</x-select>
@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       prefixes: JSON.stringify([{"value": "", "label": ""}, {"value": 0, "label": "Mr"}, {"value": 1, "label": "Ms"}]),
-      lastname: 'Boing'
+      lastname: 'Müller',
+      novalidate: !window.ElementInternals.isPolyfilled
     }
   },
 
@@ -39,10 +40,15 @@ export default {
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      const formData = new FormData(this.$refs.form);
-      const data = {};
-      formData.forEach((value, key) => data[key] = value);
-      console.log('Vue', data)
+      const valid = Array.from(this.$refs.form.elements).every(e => {
+        return e.validity.valid;
+      });
+      if (valid) {
+        const formData = new FormData(this.$refs.form);
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+        console.log('Vue', data)
+      }
     }
   }
 }

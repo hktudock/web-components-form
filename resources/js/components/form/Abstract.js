@@ -22,9 +22,6 @@ export class Abstract extends HTMLElement {
             .attachEvents()
             .initInternals()
         ;
-        if (this.hasAttribute('v-model')) {
-            console.log('V-Model!');
-        }
         this.validate();
     }
 
@@ -51,6 +48,7 @@ export class Abstract extends HTMLElement {
 
     attachEvents (mainEvent) {
         this.input.addEventListener('focus', () => this.label.classList.add('validates'), {once: true});
+        this.internals.form.addEventListener('submit', () => this.label.classList.add('validates'), {once: true});
         this.input.addEventListener('blur', () => this.validate())
         this.input.addEventListener(mainEvent, () => this.validate())
         return this;
@@ -104,5 +102,9 @@ export class Abstract extends HTMLElement {
 
     set value(v) {
         this.input.value = v;
+    }
+
+    get validity() {
+        return this.input.validity;
     }
 }

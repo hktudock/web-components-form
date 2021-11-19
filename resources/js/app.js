@@ -7,7 +7,7 @@ import "./components/form/Zip.js";
 
 window.Vue = require('vue/dist/vue.js');
 window.Vue.config.ignoredElements = [
-    'x-input-text',
+    'x-input',
     'x-select',
     'x-zip'
 ];
