@@ -1,16 +1,10 @@
 import "./bootstrap";
 
-import "./components/form/Form.js";
-import "./components/form/Input.js";
-import "./components/form/Select.js";
-import "./components/form/Zip.js";
+import "./components/form";
+import {AVAILABLE_X_FORM_TAGS} from "./components/form";
 
 window.Vue = require('vue/dist/vue.js');
-window.Vue.config.ignoredElements = [
-    'x-input',
-    'x-select',
-    'x-zip'
-];
+window.Vue.config.ignoredElements = AVAILABLE_X_FORM_TAGS;
 
 
 window.Vue.component('vue-form', require('./vue/form'));

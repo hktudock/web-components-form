@@ -11,24 +11,38 @@
         <x-zip name="zip" data-country="DE" required>Zip</x-zip>
         <x-select name="country" data-options='[{"value": "de_DE", "label": "Germany"}]'>Country</x-select>
       </fieldset>
-    <button type="submit">Clicki</button>
+    <button type="submit" :disabled="!canSubmit">Clicki</button>
   </form>
 </template>
 
 <script>
+
+import {getXFormElements} from "../components/form/helper/Form";
+
 export default {
   name: 'VueForm',
 
   data() {
     return {
+      canSubmit: false,
       prefixes: JSON.stringify([{"value": "", "label": ""}, {"value": 0, "label": "Mr"}, {"value": 1, "label": "Ms"}]),
       lastname: 'Müller',
       novalidate: !window.ElementInternals.isPolyfilled
     }
   },
 
+  computed: {
+    formElements: {
+      get() {
+        return getXFormElements(this.$refs.form)
+      }
+    }
+  },
+
   mounted() {
     this.$refs.form.addEventListener('submit', e => this.handleSubmit(e))
+    this.$refs.form.addEventListener('change', this.update.bind(this))
+    this.update()
   },
 
   watch: {
@@ -40,15 +54,20 @@ export default {
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      const valid = Array.from(this.$refs.form.elements).every(e => {
-        return e.validity.valid;
-      });
-      if (valid) {
+      if (this.isValid()) {
         const formData = new FormData(this.$refs.form);
         const data = {};
         formData.forEach((value, key) => data[key] = value);
         console.log('Vue', data)
       }
+    },
+    update(e) {
+      this.canSubmit = this.isValid();
+    },
+    isValid() {
+      return this.formElements.every(e => {
+        return e.validity.valid
+      });
     }
   }
 }

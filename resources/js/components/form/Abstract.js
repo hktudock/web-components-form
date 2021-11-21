@@ -51,6 +51,7 @@ export class Abstract extends HTMLElement {
         this.internals.form.addEventListener('submit', () => this.label.classList.add('validates'), {once: true});
         this.input.addEventListener('blur', () => this.validate())
         this.input.addEventListener(mainEvent, () => this.validate())
+        this.input.addEventListener(mainEvent, () => this.internals.form.dispatchEvent(new CustomEvent('change', {detail: this})))
         return this;
     }
 
