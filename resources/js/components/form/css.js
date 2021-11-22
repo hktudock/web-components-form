@@ -7,7 +7,7 @@ input, select {
     border-radius: 0;
     outline: none;
     appearance: none;
-    --webkit-appearance: none;
+    -webkit-appearance: none;
 }
 select {
     background: url(/img/chevron-down.svg) no-repeat calc(100% - .8rem);
