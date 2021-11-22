@@ -39,7 +39,7 @@ input {
     padding: 0;
     margin: 0;
     width: .75rem;
-    aspect-ratio: 1;
+    height: .75rem;
     border-radius: 50%;
     border-color: var(--x-form-accent-color-bg, black);
     box-sizing: border-box;
@@ -56,7 +56,7 @@ input:checked::after {
     background-color: var(--x-form-accent-color-fg, white);
     border-radius: 40%;
     width: .3em;
-    aspect-ratio: 1;
+    height: .3em;
     line-height: 0;
     padding: 0;
     margin: 0;
