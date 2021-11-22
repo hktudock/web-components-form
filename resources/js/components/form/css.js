@@ -4,8 +4,10 @@ input, select {
     background-color: var(--x-form-background-color);
     padding: var(--x-form-padding);
     border: var(--x-form-border-width) var(--x-form-border-style) var(--x-form-border-color);
+    border-radius: 0;
     outline: none;
     appearance: none;
+    --webkit-appearance: none;
 }
 select {
     background: url(/img/chevron-down.svg) no-repeat calc(100% - .8rem);

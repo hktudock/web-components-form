@@ -34,26 +34,35 @@ Radio.prototype.template.innerHTML = /*html*/ `
 ${INPUT_CSS}
 <style>
 input {
-    display: grid;
-    place-content: center;
-    border-radius: 50%;
-    aspect-ratio: 1;
-    border-color: var(--x-form-accent-color-bg, black);
-    width: .75rem;
+    display: inline-block;
+    position: relative;
     padding: 0;
+    margin: 0;
+    width: .75rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border-color: var(--x-form-accent-color-bg, black);
+    box-sizing: border-box;
 }
 :host(:hover) input:not(:checked) {
-    background: var(--x-form-accent-color-bg, hsl(0, 0%, 80%));
+    background: var(--x-form-accent-color-hover, hsl(0, 0%, 80%));
 }
 input:checked {
-    background: black;
+    background: var(--x-form-accent-color-bg, black);;
 }
 input:checked::after {
     content: '';
+    display: inline;
     background-color: var(--x-form-accent-color-fg, white);
     border-radius: 40%;
     width: .3em;
     aspect-ratio: 1;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: calc((.75rem - .3em) / 2 - 1px);
+    left: calc((.75rem - .3em) / 2 - 1px);
 }
 label span {
     display: revert;
