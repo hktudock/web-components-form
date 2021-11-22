@@ -2,6 +2,12 @@
   <form action="#" ref="form" :novalidate="novalidate">
       <h1>Vue Gedöns</h1>
       <fieldset>
+        <legend>Radio</legend>
+        <x-radio name="radioTest" value="0">Eins</x-radio>
+        <x-radio name="radioTest" value="1">Zwei</x-radio>
+        <x-radio name="radioTest" value="2">Drei</x-radio>
+      </fieldset>
+      <fieldset>
         <legend>Custom</legend>
         <x-select value="1" name="prefix" required :data-options="prefixes">Prefix</x-select>
         <fieldset class="name">
